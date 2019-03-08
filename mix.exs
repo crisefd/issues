@@ -7,6 +7,7 @@ defmodule Issues.MixProject do
       escript: escript_config(),
       version: "0.1.0",
       elixir: "~> 1.8",
+      source_url: "http://github.com/crisefd/issues",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -22,8 +23,10 @@ defmodule Issues.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.0.0"},
-      {:poison, "~> 3.1"}
+      {:httpoison, "~> 1.5.0"}, # http client
+      {:poison, "~> 3.1.0"},    # parser
+      {:ex_doc, "~> 0.19.3"},    # documentation tool
+      {:earmark, "~> 1.3.1"},    # markdown-to-html converter
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
