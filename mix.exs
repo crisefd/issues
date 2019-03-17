@@ -23,10 +23,14 @@ defmodule Issues.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.5.0"}, # http client
-      {:poison, "~> 3.1.0"},    # parser
-      {:ex_doc, "~> 0.19.3"},    # documentation tool
-      {:earmark, "~> 1.3.1"},    # markdown-to-html converter
+      # http client
+      {:httpoison, "~> 1.5.0"},
+      # parser
+      {:poison, "~> 3.1.0"},
+      # documentation tool
+      {:ex_doc, "~> 0.19.3"},
+      # markdown-to-html converter
+      {:earmark, "~> 1.3.1"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
@@ -37,5 +41,4 @@ defmodule Issues.MixProject do
       main_module: Issues.CLI
     ]
   end
-
 end

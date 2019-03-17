@@ -22,6 +22,7 @@ defmodule CliTest do
       ["c", "a", "b"]
       |> fake_created_at_list()
       |> sort_into_descending_order
+
     issues = for issue <- result, do: Map.get(issue, "created_at")
     assert issues == ~W{c b a}
   end
@@ -31,5 +32,4 @@ defmodule CliTest do
       %{"created_at" => value, "other_data" => "xxx"}
     end
   end
-
 end

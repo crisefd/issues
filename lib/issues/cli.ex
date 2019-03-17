@@ -1,6 +1,6 @@
 defmodule Issues.CLI do
   import Enum, only: [sort: 2]
-  import Issues.TableFormatter, only: [ print_table_for_columns: 2 ]
+  import Issues.TableFormatter, only: [print_table_for_columns: 2]
   @default_count 4
 
   @moduledoc """
@@ -8,7 +8,7 @@ defmodule Issues.CLI do
     functions that end up generating a table of the last
     _n_ issues in a Github project
   """
-  def main(argv), do: argv  |> parse_args |> process()
+  def main(argv), do: argv |> parse_args |> process()
 
   @doc """
     ´argv´ can be -h or --help, which returns :help.
@@ -18,18 +18,19 @@ defmodule Issues.CLI do
     Return a tuple of ´{user, project, count}´, or :help if help was givens
   """
   def parse_args(argv) do
-    OptionParser
-      .parse(argv,
-             switches: [help: :boolean],
-             aliases: [h: :help])
+    OptionParser.parse(argv,
+      switches: [help: :boolean],
+      aliases: [h: :help]
+    )
     |> elem(1)
     |> args_to_internal_representation()
   end
 
   def process(:help) do
-    IO.puts """
+    IO.puts("""
       usage: issues <owner> <project> [count | #{@default_count}]
-    """
+    """)
+
     System.halt(0)
   end
 
@@ -44,13 +45,13 @@ defmodule Issues.CLI do
   defp last(list, count) do
     list
     |> Enum.take(count)
-    |> Enum.reverse
+    |> Enum.reverse()
   end
 
   defp decode_response({:ok, body}), do: body
 
   defp decode_response({:error, error}) do
-    IO.puts "Error fetching from Github: #{error["message"]}"
+    IO.puts("Error fetching from Github: #{error["message"]}")
     System.halt(2)
   end
 
@@ -59,7 +60,7 @@ defmodule Issues.CLI do
   end
 
   defp args_to_internal_representation([user, project]) do
-    {user, project, @default_count }
+    {user, project, @default_count}
   end
 
   defp args_to_internal_representation(_), do: :help
@@ -68,5 +69,4 @@ defmodule Issues.CLI do
     list_of_issues
     |> sort(&(&1["created_at"] >= &2["created_at"]))
   end
-
 end
